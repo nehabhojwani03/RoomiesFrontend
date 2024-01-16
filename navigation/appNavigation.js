@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createDrawerNavigator } from 'react-navigation-drawer';
 import HomeScreen from '../screens/HomeScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import LoginScreen from '../screens/LoginScreen';
@@ -19,11 +18,11 @@ export default function AppNavigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Welcome'>
-        <Stack.Screen name="Home" options={{headerShown: false}} component={HomeScreen} />
-        <Stack.Screen name="Welcome" options={{headerShown: false}} component={WelcomeScreen} />
-        <Stack.Screen name="Login" options={{headerShown: false}} component={LoginScreen} />
-        <Stack.Screen name="SignUp" options={{headerShown: false}} component={SignUpScreen} />
-        <Stack.Screen name="Find" options={{headerShown: false}} component={FindScreen} />
+        <Stack.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} />
+        <Stack.Screen name="Welcome" options={{ headerShown: false }} component={WelcomeScreen} />
+        <Stack.Screen name="Login" options={{ headerShown: false }} component={LoginScreen} />
+        <Stack.Screen name="SignUp" options={{ headerShown: false }} component={SignUpScreen} />
+        <Stack.Screen name="Find" options={{ headerShown: false }} component={FindScreen} />
         {/* <Stack.Screen name="Home" options={{ headerShown: false }}>
           {() => (
             <Drawer.Navigator>
