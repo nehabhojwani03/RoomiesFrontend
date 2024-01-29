@@ -8,7 +8,6 @@ import axios from 'axios';
 import constant from '../constant';
 
 
-// subscribe for more videos like this :)
 export default function SignUpScreen({route}) {
     const navigation = useNavigation();
     const [getName, setName] = useState("")
@@ -66,7 +65,7 @@ export default function SignUpScreen({route}) {
             contentContainerStyle={{
               flex: 1
             }}
-            className="form space-y-3"
+            className="form space-y-1"
             >
         
             

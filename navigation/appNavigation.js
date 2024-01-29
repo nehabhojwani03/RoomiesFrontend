@@ -1,37 +1,50 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createDrawerNavigator } from 'react-navigation-drawer';
-import HomeScreen from '../screens/HomeScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignUpScreen from '../screens/SignUpScreen';
-import FindScreen from '../screens/FindScreen';
-// import DashboardScreen from '../screens/DashboardScreen';
-// import SettingScreen from '../screens/SettingScreen';
+import HomeNavigation from './HomeNavigation';
+import PreferenceScreen from '../screens/PreferenceScreen';
+import PrivacyScreen from '../screens/PrivacyScreen';
+import ToolsScreen from '../screens/ToolsScreen';
+import AppUpdateScreen from '../screens/AppUpdateScreen';
+import EditProfileScreen from '../screens/EditProfileScreen';
+import PreferenceTwoScreen from '../screens/PreferenceTwoScreen';
+import PreferenceThreeScreen from '../screens/PreferenceThreeScreen';
+import PreferenceFourScreen from '../screens/PreferenceFourScreen';
+import PreferenceFiveScreen from '../screens/PreferenceFiveScreen';
+import PreferenceSixScreen from '../screens/PreferenceSixScreen';
+import LookingForScreen from '../screens/LookingForScreen';
+import PropertyListingScreen from '../screens/PropertyListingScreen';
 
 
 const Stack = createNativeStackNavigator();
-//const Drawer = createDrawerNavigator();
+//const Drawer = createDrawerNavigator(); 
 
 
 export default function AppNavigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Welcome'>
-        <Stack.Screen name="Home" options={{headerShown: false}} component={HomeScreen} />
-        <Stack.Screen name="Welcome" options={{headerShown: false}} component={WelcomeScreen} />
-        <Stack.Screen name="Login" options={{headerShown: false}} component={LoginScreen} />
-        <Stack.Screen name="SignUp" options={{headerShown: false}} component={SignUpScreen} />
-        <Stack.Screen name="Find" options={{headerShown: false}} component={FindScreen} />
-        {/* <Stack.Screen name="Home" options={{ headerShown: false }}>
-          {() => (
-            <Drawer.Navigator>
-              <Drawer.Screen name="Home" component={HomeScreen} />
-              <Drawer.Screen name="Settings" component={SettingScreen} />
-            </Drawer.Navigator>
-          )}
-        </Stack.Screen> */}
+        <Stack.Screen name="Home" options={{ headerShown: false }} component={HomeNavigation} />
+        <Stack.Screen name="Welcome" options={{ headerShown: false }} component={WelcomeScreen} />
+        <Stack.Screen name="Login" options={{ headerShown: false }} component={LoginScreen} />
+        <Stack.Screen name="SignUp" options={{ headerShown: false }} component={SignUpScreen} />
+        <Stack.Screen name="Preference" options={{ headerShown: false }} component={PreferenceScreen} />
+        <Stack.Screen name="Privacy" options={{ headerShown: false }} component={PrivacyScreen} />
+        <Stack.Screen name="Tools" options={{ headerShown: false }} component={ToolsScreen} />
+        <Stack.Screen name="AppUpdate" options={{ headerShown: false }} component={AppUpdateScreen} />
+        <Stack.Screen name="EditProfile" options={{ headerShown: false }} component={EditProfileScreen} />
+        <Stack.Screen name="PreferenceTwo" options={{ headerShown: false }} component={PreferenceTwoScreen} />
+        <Stack.Screen name="PreferenceThree" options={{ headerShown: false }} component={PreferenceThreeScreen} />
+        <Stack.Screen name="PreferenceFour" options={{ headerShown: false }} component={PreferenceFourScreen} />
+        <Stack.Screen name="PreferenceFive" options={{ headerShown: false }} component={PreferenceFiveScreen} />
+        <Stack.Screen name="PreferenceSix" options={{ headerShown: false }} component={PreferenceSixScreen} />
+        <Stack.Screen name="LookingFor" options={{ headerShown: false }} component={LookingForScreen} />
+        <Stack.Screen name="PropertyListing" options={{ headerShown: false }} component={PropertyListingScreen} />
+        
+
       </Stack.Navigator>
     </NavigationContainer>
   )

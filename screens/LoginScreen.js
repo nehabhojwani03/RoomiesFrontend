@@ -25,7 +25,7 @@ export default function LoginScreen() {
 
       },
     }).then((apiResponse) => {
-       navigation.navigate('Home')
+       navigation.navigate('LookingFor')
       console.log(apiResponse.data.message);
       this.storeData(apiResponse.data)
     }).catch((err) => {
@@ -44,14 +44,14 @@ export default function LoginScreen() {
     }
   }
 
-    
+  
 
   return (
     <View className="flex-1 bg-white" style={{backgroundColor: themeColors.bg}}>
       <SafeAreaView  className="flex ">
         <View className="flex-row justify-start">
           <TouchableOpacity onPress={()=> navigation.goBack()} 
-          className="bg-yellow-400 p-2 rounded-tr-2xl rounded-bl-2xl ml-4" style={{backgroundColor: '#AA336A'}}>
+          className="bg-400 p-2 rounded-tr-2xl rounded-bl-2xl ml-4" style={{backgroundColor: '#AA336A'}}>
             <ArrowLeftIcon size="20" color="white" />
           </TouchableOpacity>
         </View>
