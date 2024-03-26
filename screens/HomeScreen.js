@@ -1,9 +1,59 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView} from "react-native";
-import React from "react";
+import { View, Text, StyleSheet, Image, TouchableOpacity,ActivityIndicator, ScrollView} from "react-native";
+import React, {useState, useEffect} from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import axios from "axios";
+import constant from "../constant";
+import AppLoading from "expo-app-loading";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HomeScreen = () => {
+
+  const [loading, setIsLoading] = useState(true);
+  const [name, setName] = useState("");
+  const [photos, setPhotos] = useState("");
+  const [token, setToken] = useState("");
+
+  const getToken = () => {
+    setIsLoading(true);
+    AsyncStorage.getItem("userdata")
+      .then((token) => {
+        if (token != null) {
+          // setIsLoading(false)
+          console.log("Something" + token);
+          setToken(token);
+          getData(token);
+        }
+      })
+      .catch((err) => {
+        console.log("Profle" + err);
+        setIsLoading(false);
+      });
+  };
+
+  const getData = (token) => {
+    setIsLoading(true);
+    axios({
+      method: "get",
+      url: constant.BASE_URL + "/auth/me",
+      headers: { Authorization: token },
+    })
+      .then((apiResponse) => {
+        const { name,photos } = apiResponse.data.data;
+        setName(name);
+        setPhotos(photos);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log("Profile" + err);
+        setIsLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    getToken();
+  }, []);
+
   return (
     <View>
       <SafeAreaView>
@@ -14,7 +64,7 @@ const HomeScreen = () => {
               style={styles.userImg}
             />
           </TouchableOpacity>
-          <Text style={styles.text}>Welcome Back, NEHA</Text>
+          <Text style={styles.text}>Welcome Back, {name}</Text>
           <TouchableOpacity>
             <Image
               source={require("../assets/images/notification.png")}

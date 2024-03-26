@@ -5,29 +5,89 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
+  ActivityIndicator,
   FlatList,
   Alert,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import ImagePicker from "react-native-image-picker";
+import axios from "axios";
+import constant from "../constant";
+import AppLoading from "expo-app-loading";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
+  const [loading, setIsLoading] = useState(true);
+  const [name, setName] = useState("");
+  const [token, setToken] = useState("");
+
+  const getToken = () => {
+    setIsLoading(true);
+    AsyncStorage.getItem("userdata")
+      .then((token) => {
+        if (token != null) {
+          // setIsLoading(false)
+          console.log("Something" + token);
+          setToken(token);
+          getData(token);
+        }
+      })
+      .catch((err) => {
+        console.log("Profle" + err);
+        setIsLoading(false);
+      });
+  };
+
+  const getData = (token) => {
+    setIsLoading(true);
+    axios({
+      method: "get",
+      url: constant.BASE_URL + "/auth/me",
+      headers: { Authorization: token },
+    })
+      .then((apiResponse) => {
+        const { name } = apiResponse.data.data;
+        setName(name);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log("Profile" + err);
+        setIsLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    getToken();
+  }, []);
+
+  const logout = (id) => {
+    console.log(id);
+    if (id == 6) {
+      console.log("Logout");
+      AsyncStorage.removeItem("userdata")
+        .then(() => {
+          console.log("Token Removed");
+          navigation.navigate("Login");
+        })
+        .catch((error) => console.log("Profile: " + error));
+    }
+  };
   const data = [
     { id: "1", title: "Profile", icon: "person-circle-outline" },
     { id: "2", title: "Privacy & Settings", icon: "lock-closed-outline" },
     { id: "3", title: "Preferences", icon: "heart" },
-    { id: "4", title: "Co-living Management Tools", icon: "flash-outline" },
-    { id: "5", title: "App Update Available", icon: "phone-portrait-outline" },
+    { id: "4", title: "Listings", icon: "layers-outline" },
+    { id: "5", title: "Co-living Management Tools", icon: "flash-outline" },
     { id: "6", title: "Logout", icon: "log-out" },
   ];
 
-  const ListItem = ({ title, icon, fullWidth }) => {
+  const ListItem = ({ id, title, icon, fullWidth }) => {
     return (
-      <TouchableOpacity onPress={() => handleItemClick(title)}>
+      <TouchableOpacity onPress={() => handleItemClick(id, title)}>
         <View
           style={[styles.itemCard, fullWidth ? styles.fullWidthCard : null]}
         >
@@ -38,7 +98,7 @@ const ProfileScreen = () => {
     );
   };
 
-  const handleItemClick = (title) => {
+  const handleItemClick = (id,title) => {
     if (title === "Profile") {
       navigation.navigate("EditProfile", { headerColor: "#AA336A" });
     }
@@ -48,11 +108,11 @@ const ProfileScreen = () => {
     if (title === "Preferences") {
       navigation.navigate("Preference");
     }
+    if (title === "Listings") {
+      navigation.navigate("PropertyListing");
+    }
     if (title === "Co-living Management Tools") {
       navigation.navigate("Tools");
-    }
-    if (title === "App Update Available") {
-      navigation.navigate("AppUpdate");
     }
     if (title === "Logout") {
       Alert.alert(
@@ -66,7 +126,7 @@ const ProfileScreen = () => {
           {
             text: "OK",
             onPress: () => {
-              navigation.navigate("Login");
+              logout(id)
             },
           },
         ],
@@ -124,6 +184,8 @@ const ProfileScreen = () => {
   };
   return (
     <SafeAreaView>
+      {loading && <ActivityIndicator size="large" color="#0000ff" />}
+
       <View style={styles.container}>
         <LinearGradient colors={["#F7DBA7", "#F0AB86"]} style={styles.card}>
           <View>
@@ -138,7 +200,7 @@ const ProfileScreen = () => {
           </TouchableOpacity>
 
           <View>
-            <Text style={styles.usernameText}>Neha Bhojwani</Text>
+            <Text style={styles.usernameText}>{name}</Text>
           </View>
         </LinearGradient>
       </View>
@@ -149,6 +211,7 @@ const ProfileScreen = () => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <ListItem
+            id={item.id}
             title={item.title}
             icon={item.icon}
             fullWidth={item.fullWidth}

@@ -15,12 +15,14 @@ import PreferenceThreeScreen from '../screens/PreferenceThreeScreen';
 import PreferenceFourScreen from '../screens/PreferenceFourScreen';
 import PreferenceFiveScreen from '../screens/PreferenceFiveScreen';
 import PreferenceSixScreen from '../screens/PreferenceSixScreen';
-import LookingForScreen from '../screens/LookingForScreen';
+//import LookingForScreen from '../screens/LookingForScreen';
 import PropertyListingScreen from '../screens/PropertyListingScreen';
+import PropertyListingScreenTwo from '../screens/PropertyListingScreenTwo';
+import PropertyScreenListingThree from '../screens/PropertyListingScreenThree';
+import PropertyScreenListingFour from '../screens/PropertyListingScreenFour';
 
 
-const Stack = createNativeStackNavigator();
-//const Drawer = createDrawerNavigator(); 
+const Stack = createNativeStackNavigator(); 
 
 
 export default function AppNavigation() {
@@ -41,8 +43,10 @@ export default function AppNavigation() {
         <Stack.Screen name="PreferenceFour" options={{ headerShown: false }} component={PreferenceFourScreen} />
         <Stack.Screen name="PreferenceFive" options={{ headerShown: false }} component={PreferenceFiveScreen} />
         <Stack.Screen name="PreferenceSix" options={{ headerShown: false }} component={PreferenceSixScreen} />
-        <Stack.Screen name="LookingFor" options={{ headerShown: false }} component={LookingForScreen} />
         <Stack.Screen name="PropertyListing" options={{ headerShown: false }} component={PropertyListingScreen} />
+        <Stack.Screen name="PropertyListingTwo" options={{ headerShown: false }} component={PropertyListingScreenTwo} />
+        <Stack.Screen name="PropertyListingThree" options={{ headerShown: false }} component={PropertyScreenListingThree} />
+        <Stack.Screen name="PropertyListingFour" options={{ headerShown: false }} component={PropertyScreenListingFour} />
         
 
       </Stack.Navigator>

@@ -25,9 +25,10 @@ export default function LoginScreen() {
 
       },
     }).then((apiResponse) => {
-       navigation.navigate('LookingFor')
-      console.log(apiResponse.data.message);
-      this.storeData(apiResponse.data)
+      //  navigation.navigate('LookingFor')
+      console.log(apiResponse.data.token);
+      // this.storeData(apiResponse.data)
+      handleAsyncStorage(apiResponse.data.token)
     }).catch((err) => {
       console.log();
       console.log(err);
@@ -35,13 +36,12 @@ export default function LoginScreen() {
     });
   }
 
-  storeData = async (userData) => {
-    try {
-      await AsyncStorage.setItem("userdata", JSON.stringify(userData));
-    } catch (err) {
-      console.log("error while storing data", err);
+  const handleAsyncStorage = (token) => {
+    AsyncStorage.setItem('userdata', `Bearer ${token}`).then(() => {
+      console.log("Token Saved")
+      navigation.navigate('Home')
 
-    }
+    }).catch(error => console.log("Login: " + error))
   }
 
   
