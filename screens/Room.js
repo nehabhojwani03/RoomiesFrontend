@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList, SafeAreaView } from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
+// import Ionicons from "@expo/vector-icons/Ionicons";
 import { EvilIcons } from '@expo/vector-icons';
 import { COLORS, SIZES } from "../constants";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowLeftIcon } from "react-native-heroicons/solid";
+import { Ionicons } from '@expo/vector-icons';
 
-const Roommates = () => {
+const Room = () => {
     const navigation = useNavigation();
     const [data, setData] = useState([
-        { id: 1, name: "Tiffany", age: 20, gender: "Woman", image: require('../assets/images/Profile1.jpg') },
-        { id: 2, name: "Micheal", age: 22, gender: "Man", image: require('../assets/images/Profile2.jpg') },
-        { id: 3, name: "Timothy", age: 20, gender: "Man", image: require('../assets/images/Profile3.jpg') },
-        { id: 4, name: "Samantha", age: 19, gender: "Woman", image: require('../assets/images/Profile4.jpg') },
-        { id: 5, name: "Olivia", age: 24, gender: "Woman", image: require('../assets/images/Profile5.jpg') },
+        { id: 1, name: "Sam Pg", age: '2 BHK', address: 'Near Pes University, Bangalore', gender: "Woman", image: require('../assets/images/room1.jpeg') },
+        { id: 2, name: "Micheal flats", age: '3 BHK', address: 'Near Pes University, Bangalore', gender: "Man", image: require('../assets/images/room2.jpeg') },
+        { id: 3, name: "Sri sai pg", age: '2 BHK', address: 'Near Pes University, Bangalore', gender: "Unisex", image: require('../assets/images/room3.jpeg') },
+        { id: 4, name: "Samantha pg", age: '4 BHK', address: 'Near Pes University, Bangalore', gender: "Woman", image: require('../assets/images/room4.jpeg') },
+        { id: 5, name: "Olivia pg", age: '2 BHK', address: 'Near Pes University, Bangalore', gender: "man", image: require('../assets/images/room1.jpeg') },
     ]);
 
     const [favorites, setFavorites] = useState([]);
@@ -25,30 +26,24 @@ const Roommates = () => {
             setFavorites([...favorites, id]);
         }
     };
-    // const handleSend = (id) => {
-    //     alert(`Sending message to ID: ${id}`);
-    // };
 
     const handleNavigation = (id) => {
         let routeName = '';
         switch (id) {
             case 1:
-                routeName = 'Roommate1';
+                routeName = 'Room1';
                 break;
             case 2:
-                routeName = 'Roommate2';
+                routeName = 'Room2';
                 break;
             case 3:
-                routeName = 'Roommate3';
+                routeName = 'Room3';
                 break;
             case 4:
-                routeName = 'Roommate4';
+                routeName = 'Room4';
                 break;
             case 5:
-                routeName = 'Roommate5';
-                break;
-            case 6:
-                routeName = 'Roommate6';
+                routeName = 'Room5';
                 break;
             default:
                 routeName = 'DefaultRoommate';
@@ -62,27 +57,44 @@ const Roommates = () => {
             <Image source={item.image} style={styles.Img} />
             <View style={{ marginLeft: 170, marginTop: -170 }}>
                 <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{item.name}</Text>
-                <Text style={{ marginTop: 10, fontSize: 16 }}>Age: {item.age} {item.gender}</Text>
-                {/* <TouchableOpacity >
-                    <Ionicons name="paper-plane-outline" size={25} style={{ marginTop: 70, marginLeft: 100 }} />
-                </TouchableOpacity> */}
-                <TouchableOpacity onPress={() => handleNavigation(item.id)}>
-                    <Ionicons name="paper-plane-outline" size={25} style={{ marginTop: 70, marginLeft: 100 }} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => handleFavorite(item.id)}>
-                    <Ionicons
-                        name={favorites.includes(item.id) ? 'heart' : 'heart-outline'}
-                        size={25}
-                        style={{ marginTop: -25, marginLeft: 150, color: favorites.includes(item.id) ? 'red' : 'black' }}
-                    />
-                </TouchableOpacity>
+                <View style={{ flexDirection: 'row', marginTop: 4 }}>
+                    <View style={{ marginTop: 10 }}>
+                        <Ionicons name="home" size={18} color="black" />
+                    </View>
+                    <View>
+                        <Text style={{ marginTop: 10, fontSize: 16 }}> {item.age} for {item.gender} </Text>
+                    </View>
+                </View>
+
+                <View style={{ flexDirection: 'row' }}>
+                    <View style={{ marginTop: 10 }}>
+                        <Ionicons name="location" size={20} color="black" />
+                    </View>
+                    <View>
+                        <Text style={{ marginTop: 10, fontSize: 16 }}> {item.address}</Text>
+                    </View>
+                </View>
+
+
+                <View style={{ marginHorizontal: -15 }}>
+                    <TouchableOpacity onPress={() => handleNavigation(item.id)}>
+                        <Ionicons name="paper-plane-outline" size={25} style={{ marginTop: 20, marginLeft: 100 }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleFavorite(item.id)}>
+                        <Ionicons
+                            name={favorites.includes(item.id) ? 'heart' : 'heart-outline'}
+                            size={25}
+                            style={{ marginTop: -25, marginLeft: 150, color: favorites.includes(item.id) ? 'red' : 'black' }}
+                        />
+                    </TouchableOpacity>
+                </View>
+
             </View>
         </View>
     );
 
     return (
         <SafeAreaView>
-
             <View style={styles.container}>
                 <View style={styles.topContainer}>
                     <View style={styles.backIcon}>
@@ -91,7 +103,7 @@ const Roommates = () => {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.titleTextContainer}>
-                        <Text style={styles.titleText(COLORS.primary, SIZES.xSmall - 5)}>Roommates</Text>
+                        <Text style={styles.titleText(COLORS.primary, SIZES.xSmall - 5)}>Rooms</Text>
                     </View>
                 </View>
             </View>
@@ -108,7 +120,7 @@ const Roommates = () => {
     );
 };
 
-export default Roommates;
+export default Room;
 
 const styles = StyleSheet.create({
     card: {
@@ -172,6 +184,6 @@ const styles = StyleSheet.create({
         fontSize: SIZES.xLarge,
         marginTop: top,
         color: color,
-        marginLeft: -37,
+        marginLeft: -17,
     }),
 });

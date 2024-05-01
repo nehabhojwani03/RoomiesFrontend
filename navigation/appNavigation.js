@@ -24,6 +24,18 @@ import PropertyScreenListingFour from '../screens/PropertyListingScreenFour';
 import Selectlocation from '../components/Selectlocation';
 import Roommates from '../screens/Roommates';
 import AddressDetails from '../components/AddressDetails';
+import Room from '../screens/Room';
+import Roommate1 from '../components/Roommates/Roommate1';
+import Roommate4 from '../components/Roommates/Roommate4';
+import Roommate3 from '../components/Roommates/Roommate3';
+import Roommate2 from '../components/Roommates/Roommate2';
+import Roommate5 from '../components/Roommates/Roommate5';
+import Roommate6 from '../components/Roommates/Roommate6';
+import Room1 from '../components/Rooms/Room1';
+import Room2 from '../components/Rooms/Room2';
+import Room3 from '../components/Rooms/Room3';
+import Room4 from '../components/Rooms/Room4';
+import Room5 from '../components/Rooms/Room5';
 
 
 const Stack = createNativeStackNavigator();
@@ -55,6 +67,18 @@ export default function AppNavigation() {
         <Stack.Screen name="Selectlocation" options={{ headerShown: false }} component={Selectlocation} />
         <Stack.Screen name="AddressDetails" options={{ headerShown: false }} component={AddressDetails} />
         <Stack.Screen name="Roommates" options={{ headerShown: false }} component={Roommates} />
+        <Stack.Screen name="Room" options={{ headerShown: false }} component={Room} />
+        <Stack.Screen name="Roommate1" options={{ headerShown: false }} component={Roommate1} />
+        <Stack.Screen name="Roommate2" options={{ headerShown: false }} component={Roommate2} />
+        <Stack.Screen name="Roommate3" options={{ headerShown: false }} component={Roommate3} />
+        <Stack.Screen name="Roommate4" options={{ headerShown: false }} component={Roommate4} />
+        <Stack.Screen name="Roommate5" options={{ headerShown: false }} component={Roommate5} />
+        <Stack.Screen name="Roommate6" options={{ headerShown: false }} component={Roommate6} />
+        <Stack.Screen name="Room1" options={{ headerShown: false }} component={Room1} />
+        <Stack.Screen name="Room2" options={{ headerShown: false }} component={Room2} />
+        <Stack.Screen name="Room3" options={{ headerShown: false }} component={Room3} />
+        <Stack.Screen name="Room4" options={{ headerShown: false }} component={Room4} />
+        <Stack.Screen name="Room5" options={{ headerShown: false }} component={Room5} />
 
 
 

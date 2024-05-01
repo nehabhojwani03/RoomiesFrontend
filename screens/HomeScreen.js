@@ -268,7 +268,7 @@ const HomeScreen = () => {
 
 
               </View>
-              <TouchableOpacity >
+              <TouchableOpacity onPress={() => navigation.navigate("Room")} >
                 <View style={{
                   marginTop: 1,
                   // borderWidth: 1,
