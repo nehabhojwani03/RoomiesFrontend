@@ -4,7 +4,9 @@ import ChatScreen from "../screens/ChatScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import AboutScreen from "../screens/AboutScreen";
 import HomeScreen from "../screens/HomeScreen";
+import ToolsScreen from "../screens/ToolsScreen";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -33,12 +35,13 @@ export default function App() {
       />
 
       <Tab.Screen
-        name="Chat"
-        component={ChatScreen}
+        name="Co-living Tools"
+        component={ToolsScreen}
         options={{
-          tabBarLabel: "Chat",
+          tabBarLabel: "Tools",
           tabBarIcon: ({ color }) => (
-            <Ionicons name="chatbubbles-outline" size={25} color={color} />
+            // <Ionicons name="chatbubbles-outline" size={25} color={color} />
+            <MaterialIcons name="electric-bolt" size={24} color={color} />
           ),
         }}
       />

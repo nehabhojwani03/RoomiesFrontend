@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import { ArrowLeftIcon } from 'react-native-heroicons/solid';
 import { COLORS, SIZES } from '../constants';
@@ -141,7 +141,7 @@ const AddressDetails = () => {
                     <Text style={[styles.tabText, selectedSource === 'others' ? styles.selectedTabText : null]}>Others</Text>
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity onPress={() => { navigation.navigate("SelectNgoDropdown") }}>
+            <TouchableOpacity onPress={() => Alert.alert('Address Changed')}>
                 <View style={{
                     width: '26%',
                     height: 26,
@@ -162,7 +162,7 @@ const AddressDetails = () => {
                         // fontWeight: 'bold',
                         marginTop: 3,
                         color: 'white'
-                    }}>Pickup</Text>
+                    }}>Done</Text>
 
                 </View>
             </TouchableOpacity>

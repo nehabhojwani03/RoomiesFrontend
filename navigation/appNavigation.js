@@ -36,6 +36,9 @@ import Room2 from '../components/Rooms/Room2';
 import Room3 from '../components/Rooms/Room3';
 import Room4 from '../components/Rooms/Room4';
 import Room5 from '../components/Rooms/Room5';
+import ManageChores from '../components/CoLivingTools/ManageChores';
+import ManageTasks from '../components/CoLivingTools/ManageTasks';
+import ManageGroceries from '../components/CoLivingTools/ManageGroceries';
 
 
 const Stack = createNativeStackNavigator();
@@ -79,6 +82,9 @@ export default function AppNavigation() {
         <Stack.Screen name="Room3" options={{ headerShown: false }} component={Room3} />
         <Stack.Screen name="Room4" options={{ headerShown: false }} component={Room4} />
         <Stack.Screen name="Room5" options={{ headerShown: false }} component={Room5} />
+        <Stack.Screen name="ManageChores" options={{ headerShown: false }} component={ManageChores} />
+        <Stack.Screen name="ManageTasks" options={{ headerShown: false }} component={ManageTasks} />
+        <Stack.Screen name="ManageGroceries" options={{ headerShown: false }} component={ManageGroceries} />
 
 
 

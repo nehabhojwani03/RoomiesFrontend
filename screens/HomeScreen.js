@@ -75,7 +75,8 @@ const HomeScreen = () => {
 
 
   const handlePress = () => {
-    Alert.alert('Button Pressed');
+    // Alert.alert('Button Pressed');
+    navigation.navigate("Room")
   };
 
   return (
